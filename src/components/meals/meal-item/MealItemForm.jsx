@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled';
-import {ReactComponent as PlusIcons} from "../../../assets/icons/plus-icons.svg"
 import Button from '../../UI/Button'
 import {addToBasket} from "../../../store/basket/basketSlice"
 import { useDispatch } from 'react-redux'
@@ -30,9 +29,10 @@ const MealItemForm = ({id, title, price }) => {
   return (
     <StyledForm onClick={submitHandler}>
        <Container>
-       <StyledLabel htmlFor={id}>Amount</StyledLabel>
        </Container>
        <Container>
+       <StyledLabel htmlFor={id}>Amount</StyledLabel>
+
        <StyledText
           id={id}
           type="number"
@@ -71,14 +71,15 @@ const StyledForm = styled("form")(() => ({
 }));
 
 const Container = styled("div")(() => ({
-  marginBottom: "15px",
+  marginBottom: "1rem",
 }));
 
 const StyledLabel = styled("label")(() => ({
   fontWeight: "600",
   fontSize: "1.125rem",
   lineHeight: "1.6875rem",
-  margin: "0 1.25rem 0 0",
+  margin: "1rem 1.25rem 1rem 1rem",
+  
 }));
 
 

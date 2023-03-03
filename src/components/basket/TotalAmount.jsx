@@ -1,4 +1,5 @@
 import React from 'react'
+import {memo} from "react"
 import Button from '../UI/Button'
 import styled from 'styled-components'
 
@@ -23,7 +24,7 @@ const TotalAmount = ({price, onOrder, onClose}) => {
   )
 }
 
-export default TotalAmount;
+export default memo(TotalAmount);
  const Label = styled.p`
   font-weight: 700;
   font-size: 20px;

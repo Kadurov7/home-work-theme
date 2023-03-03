@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
+import {border, borderRadius, styled} from "@mui/system";
 import BasketButton from './BasketButton';
 import { getBasket } from '../../store/basket/basketSlice';
-
+import { uiActions } from "../../store/uiSlice";
+import Button from '../UI/Button';
 
 const Header = ({onShowBasket}) => {
    
@@ -11,6 +12,7 @@ const Header = ({onShowBasket}) => {
 
   const items = useSelector((state)=> state.basket.items)
   const [animationClass, setAnimationClass] = useState("")
+  const themeMode = useSelector((state) => state.ui.themeMode);
 
 
   useEffect(()=>{
@@ -35,6 +37,13 @@ const Header = ({onShowBasket}) => {
     }
 
  },[items])
+
+ 
+  const themeChangeHandler = ()=>{
+    const theme = themeMode === "light" ? " dark" :"light";
+    dispatch(uiActions.changeTheme(theme))
+  }
+
   return (
     <Container>
         <Logo>ReactMeals</Logo>
@@ -43,29 +52,51 @@ const Header = ({onShowBasket}) => {
          className={animationClass}
          count={calculeteTotalAmount()}>
         </BasketButton>
+  <StyledButton onClick={themeChangeHandler}>
+    { themeMode === "light" ? " Dark YOOO " : " light YOOO" }
+  </StyledButton>
     </Container>
   )
 }
 
 export default Header;
 
-const Container = styled.header`
-    width: 100%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    height: 101px;
-    background-color: #8A2B06;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left:120px;
-    padding-right: 120px;
-`
-const Logo = styled.p`
-    font-weight: 600;
-    font-size: 38px;
-    line-height: 57px;
-    color: #FFFFFF;
-    margin: 0;
-`
+const Container = styled("header")(({theme})=>({
+  width: "100%",
+  position: "fixed",
+  zIndex: 1,
+  top: 0,
+  height: "101px",
+  backgroundColor: theme.palette.primary.light,
+  display: "flex",
+  alignItems:"center",
+  justifyContent: "space-between",
+  paddingLeft:"120px",
+  paddingRight: "120px",
+}))
+    
+
+const Logo = styled("p")(()=>({
+  fontWeight: 600,
+  fontSize: "38px",
+  lineHeight: "57px",
+  color: "#FFFFFF",
+  margin: 0,
+
+}));
+  
+const StyledButton = styled("button")(()=> ({
+  height:"9vh",
+  width:"10vw",
+  borderRadius:"8px",
+  border:"none",
+  backgroundColor:"#11737a",
+  color:"white",
+  fontSize:"17px",
+
+  '&:hover' :{
+    backgroundColor:"#04066b",
+    cursor:"pointer"
+  }
+}))
+

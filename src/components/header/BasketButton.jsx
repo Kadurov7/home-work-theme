@@ -4,20 +4,20 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Button } from "@mui/material";
 import { styled } from "@mui/system";
 
-const BasketButton = ({count = 0, ...restProps}) => {
+const BasketButton = ({count  , ...restProps}) => {
   return (
     <StyledBtn {...restProps}>
         <ShoppingCartIcon/>
             <StyledTitle>Your Cart</StyledTitle>
-            <StyledConter id='counter'>{count || 0}</StyledConter>
+            <StyledConter id='counter'>{count}</StyledConter>
     </StyledBtn>
   )
 }
 
 export default BasketButton;
 
-const StyledBtn = styled(Button)(()=>({
-  background: "#5a1f08",
+const StyledBtn = styled(Button)(({theme })=> ({
+  background: theme.palette.primary.main,
   color: "#fff",
   borderRadius: "1.70rem",
   padding: " 0.75rem 2rem",
@@ -25,16 +25,17 @@ const StyledBtn = styled(Button)(()=>({
   fontSize: "1rem",
   lineHeight: "1.5rem",
   border: "none",
+  height:"10vh",
   cursor: "pointer",
   display: "flex",
-  alignItems: "center",
+  alignItems:"center",
 
   "&:hover": {
-    backgroundColor: "#2c0d00",
+    backgroundColor:theme.palette.primary.main,
   },
 
   "&:hover > #counter": {
-    background: "#662207",
+    background: theme.palette.primary.dark,
   },
 
   "&.bump": {
@@ -58,20 +59,20 @@ const StyledBtn = styled(Button)(()=>({
       transform: "scale(1)",
     },
   },
-}))
-    
-  
+})) 
 
 const StyledTitle = styledComponent.span`
     margin: 0 1.5rem 0 0.75rem;
  
-`
-const StyledConter = styledComponent.span`
-    color: white;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 27px;
-    background: #8A2B06;
-    border-radius: 30px;
-    padding: 4px 20px;
-`
+`;
+const StyledConter = styled('span')(({ theme})=>({
+  color: "white",
+  fontWeight: 700,
+  fontSize: "20px",
+  lineHeight: "27px",
+  background: theme.palette.primary.main,
+  borderRadius: "30px",
+  padding:"4px 20px",
+}))
+    
+

@@ -2,7 +2,8 @@ import React from 'react'
 import {Modal as MuiModal} from "@mui/material"
 import {Box} from "@mui/material"
 import TotalAmount from './TotalAmount'
-import styled from 'styled-components'
+import {styled} from '@mui/system'
+import styledComponents from 'styled-components'
 import BasketItem from './BasketItem'
 import { useDispatch, useSelector } from 'react-redux'
 import {deleteBasketItem, submitOrder, uptadeBasketItem} from "../../store/basket/basketSlice"
@@ -82,38 +83,36 @@ const getTotalPrice = ()=>{
 }
 
 export default Basket;
-const Content = styled.div`
+const Content = styledComponents.div`
   width:100%;
   height: 100%;
   padding: 0 1rem 1.5rem 1rem;
 `
-const FixedContainer = styled.div`
+const FixedContainer = styledComponents.div`
   height: 228px;
   overflow-y: scroll;
 
 `
-const Styled = styled(Box)`
-  position: fixed;
-top: 20vh;
-left: 5%;
-width: 90%;
-background-color: white;
-padding: 1rem;
-border-radius: 14px;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-z-index: 30;
-animation: slide-down 300ms ease-out forwards;
-width: 40rem;
-left: calc(50% - 20rem);
-
-@keyframes slide-down {
-  from {
-    opacity: 0;
-    transform: translateY(-3rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-`
+const Styled = styled(Box)(({theme})=> ({
+  position: "fixed",
+  top: "20vh",
+  backgroundColor: theme.palette.primary.dark,
+  padding:" 1rem",
+  borderRadius: "14px",
+  boxShadow:" 0 2px 8px rgba(0, 0, 0, 0.25)",
+  zIndex: 30,
+  animation:" slide-down 300ms ease-out forwards",
+  width: "640px",
+  left: "calc(50% - 20rem)",
+  
+ " @keyframes slide-down" :   {
+    "from" :{
+      opacity: 0,
+      transform: "translateY(-3rem)",
+    },
+   " to" :{
+      opacity: 1,
+      transform: "translateY(0)",
+    },
+  },
+}))

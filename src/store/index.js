@@ -1,6 +1,4 @@
-import {combineReducers, createStore} from "redux"
-import thunk from "redux-thunk"
-import { applyMiddleware } from "redux"
+import {combineReducers} from "redux"
 import { basketSlice } from "./basket/basketSlice"
 import { mealsSlice } from "./mealsReducer/mealsSlice"
 import { configureStore } from "@reduxjs/toolkit"
